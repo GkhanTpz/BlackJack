@@ -1,7 +1,3 @@
-Here’s an explanation of the Blackjack game code formatted for GitHub:
-
----
-
 ## Blackjack Game Code Explanation
 
 This Python code simulates a simple Blackjack game between a player and a dealer. It uses basic rules to calculate the value of each hand, allowing the player to hit or stay, and the dealer to play according to the game logic.
