@@ -79,4 +79,3 @@ This code models the core elements of Blackjack, with some simplified rules for 
 
 --- 
 
-This explanation outlines the key elements and flow of the Blackjack game for easy understanding of the code and game mechanics.
