@@ -39,7 +39,6 @@ def get_rank(include_faces_card = True):
     else:
         return str(card_rank)
 
-
 def blackjack_player(card):
     rank = card.split()[0]
     if rank in ["Jack","Queen","King"]:
@@ -117,6 +116,7 @@ def game():
                         dealer_total_value -= 10
                         break
 
+        # Player's Result
         print("---------------------\n")
         print("You:")
         print("1. ", player_hand.splitlines()[0])
@@ -124,6 +124,7 @@ def game():
         print("Your total value:", player_total_value)
         print("---------------------\n")
 
+        # The Dealer's Result
         print("---------------------\n")
         print("Dealer:")
         print("1. ", dealer_hand.splitlines()[0])
@@ -145,6 +146,7 @@ def game():
         else:
             print("The Dealer wins.\n")
 
+        #Play Again!
         play_again = input('Would you like to play more? (Yes/No): ').capitalize()
         if play_again != "Yes":
             break
