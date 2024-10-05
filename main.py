@@ -140,10 +140,12 @@ def game():
         elif dealer_total_value < player_total_value <= 21:
             if player_total_value == 21:
                 print("You win. Black Jack!\n")
+            else:
+                print("You win.\n")
         else:
             print("The Dealer wins.\n")
 
-        play_again = input("Would you like to play more? (Yes/No): ").strip().lower()
-        if play_again != "yes":
+        play_again = input('Would you like to play more? (Yes/No): ').capitalize()
+        if play_again != "Yes":
             break
 game()
