@@ -135,11 +135,11 @@ def game():
         # The Game Result
         if player_total_value == dealer_total_value:
             print("Draw.\n")
+        elif dealer_total_value > 21:
+            print("You win.\n")
         elif dealer_total_value < player_total_value <= 21:
             if player_total_value == 21:
                 print("You win. Black Jack!\n")
-            elif player_total_value <= 21 < dealer_total_value or player_total_value > dealer_total_value:
-                print("You win.\n")
         else:
             print("The Dealer wins.\n")
 
