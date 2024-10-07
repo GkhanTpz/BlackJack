@@ -65,6 +65,33 @@ def blackjack_dealer(card):
     else:
         return int(rank)
 
+def print_hand(person, person_hand, total_score):
+    print(f"{person}:")
+    for index, card in enumerate(person_hand.splitlines(), start=1):
+        print(f"{index}. {card}")
+    print(f"{person}'s Total Score:", total_score)
+    print("-----------------------\n")
+
+
+def calculate_hand(person, card_count, is_dealer=False):
+    hand = draw_hand(card_count)
+    total_score= sum(
+        [blackjack_dealer(card) if person == "Dealer" else blackjack_player(card) for card in hand.splitlines()])
+
+    if is_dealer:
+        print(f"{person}:")
+        print("1. ", hand.splitlines()[0])
+        print("2.  **********")
+        print("---------------------\n")
+    else:
+        print(f"{person}:")
+        for index, card in enumerate(hand.splitlines(), start=1):
+            print(f"{index}. {card}")
+        print(f"Your Total Score: {total_score}")
+        print("---------------------\n")
+
+    return hand, total_score
+
 
 def game():
     while True:
@@ -73,30 +100,20 @@ def game():
               "===========\n")
 
         # Dealer's hand calculation
-        dealer_hand = draw_hand(2)
-        print("---------------------")
-        print("Dealer:")
-        print("1. ", dealer_hand.splitlines()[0])
-        print("2.  **********")
-        dealer_total_value = sum([blackjack_dealer(card) for card in dealer_hand.splitlines()])
-        print("---------------------\n")
+        dealer_hand, dealer_total_score = calculate_hand("Dealer",2,True)
 
         # Player's hand calculation
-        print("You:")
-        player_hand = draw_hand(2)
-        print(player_hand)
-        player_total_value = sum([blackjack_player(card) for card in player_hand.splitlines()])
-        print("Your Total Value:", player_total_value)
+        player_hand, player_total_score =calculate_hand("You",2)
 
         # Player's decision loop
         get_player_card = ""
-        while player_total_value <= 17:
+        while player_total_score <= 17:
             player_answer = input('Hit or Stay: ').capitalize()
             if player_answer == "Hit":
                 get_player_card = draw_hand(1)
                 print(get_player_card)
-                player_total_value += blackjack_player(get_player_card)
-                if player_total_value >= 21:
+                player_total_score += blackjack_player(get_player_card)
+                if player_total_score >= 21:
                     break
             elif player_answer == "Stay":
                 break
@@ -105,41 +122,30 @@ def game():
 
         # Dealer's decision loop
         get_dealer_card = ""
-        while dealer_total_value <= 17:
-            if player_total_value > 21:
+        while dealer_total_score<= 17:
+            if player_total_score> 21:
                 break
             get_dealer_card = draw_hand(1)
-            dealer_total_value += blackjack_dealer(get_dealer_card)
-            if dealer_total_value > 21:
+            dealer_total_score += blackjack_dealer(get_dealer_card)
+            if dealer_total_score > 21:
                 for card in dealer_hand.splitlines():
                     if card == "Ace":
-                        dealer_total_value -= 10
+                        dealer_total_score -= 10
                         break
 
         # Player's Result
-        print("---------------------\n")
-        print("You:")
-        print("1. ", player_hand.splitlines()[0])
-        print("2. ", player_hand.splitlines()[1])
-        print("Your total value:", player_total_value)
-        print("---------------------\n")
+        print_hand("You", player_hand, player_total_score)
 
         # The Dealer's Result
-        print("---------------------\n")
-        print("Dealer:")
-        print("1. ", dealer_hand.splitlines()[0])
-        print("2. ", dealer_hand.splitlines()[1])
-        print("3. ", get_dealer_card)
-        print("Dealer's total value:", dealer_total_value)
-        print("---------------------\n")
+        print_hand("Dealer",dealer_hand,dealer_total_score)
 
         # The Game Result
-        if player_total_value == dealer_total_value:
+        if player_total_score == dealer_total_score:
             print("Draw.\n")
-        elif dealer_total_value > 21:
+        elif dealer_total_score > 21:
             print("You win.\n")
-        elif dealer_total_value < player_total_value <= 21:
-            if player_total_value == 21:
+        elif dealer_total_score < player_total_score <= 21:
+            if player_total_score == 21:
                 print("You win. Black Jack!\n")
             else:
                 print("You win.\n")
