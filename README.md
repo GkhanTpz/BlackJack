@@ -12,7 +12,7 @@ This Python code simulates a simple Blackjack game between a player and a dealer
   - `number`: The number of cards to draw.
   - `include_faces_card`: If `True`, the hand may include face cards (Jack, Queen, King).
 - **Returns:** A string representing the cards in the hand, with each card on a new line.
-- **How it works:** Calls `draw_card()` for each card drawn, concatenating the results.
+- **How it works:** Calls `draw_card()` for each card drawn and concatenates the results.
 
 #### `draw_card(include_faces_card=True)`
 - **Purpose:** Draws a single card by combining a rank (like "Ace", "2", "King") and a suit (like "Hearts", "Clubs").
@@ -47,6 +47,21 @@ This Python code simulates a simple Blackjack game between a player and a dealer
   - Face cards are worth 10 points.
   - Aces are always worth 11 points (for simplicity).
 
+#### `print_hand(person, hand, total_score)`
+- **Purpose:** Prints the current hand and total score of a player or dealer.
+- **Parameters:**
+  - `person`: The player or dealer's name.
+  - `hand`: The hand of cards drawn.
+  - `total_score`: The total score based on the cards drawn.
+
+#### `calculate_hand(person, card_count, is_dealer=False)`
+- **Purpose:** Draws the hand for a player or dealer and calculates the total score.
+- **Parameters:**
+  - `person`: The player or dealer's name.
+  - `card_count`: Number of cards to draw.
+  - `is_dealer`: If `True`, hides the dealer's second card initially.
+- **Returns:** The hand and total score.
+
 ### Game Logic
 
 #### `game()`
@@ -55,6 +70,7 @@ This Python code simulates a simple Blackjack game between a player and a dealer
   1. **Game Introduction:** Displays a welcome message for the Blackjack game.
   2. **Dealer’s Initial Hand:**
      - The dealer is dealt 2 cards, but only one card is shown to the player.
+     - The second card is hidden as per Blackjack rules.
   3. **Player’s Hand:**
      - The player is dealt 2 cards, and their total hand value is calculated using `blackjack_player()`.
   4. **Player Hits or Stays:**
@@ -62,7 +78,7 @@ This Python code simulates a simple Blackjack game between a player and a dealer
      - If the player chooses to hit, their total hand value is updated, and they continue until they either stay or exceed 21.
   5. **Dealer’s Turn:**
      - The dealer draws cards until their total hand value is at least 17.
-     - The dealer's total value is updated after each card is drawn.
+     - If the dealer has an Ace and exceeds 21, the Ace is counted as 1 instead of 11.
   6. **Endgame and Result:**
      - The game compares the player's and dealer's hand values:
        - If the values are the same, it results in a draw.
@@ -76,4 +92,4 @@ This Python code simulates a simple Blackjack game between a player and a dealer
 3. **Dealer’s turn:** The dealer draws cards until their total hand value is at least 17.
 4. **Game result:** The player wins if their hand value is greater than the dealer's or if the dealer busts.
 
---- 
+---
