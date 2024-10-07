@@ -67,13 +67,13 @@ def blackjack_dealer(card):
 
 def print_hand(person, person_hand, total_score):
     print(f"{person}:")
-    for index, card in enumerate(person_hand.splitlines(), start=1):
+    for index, card in enumerate(person_hand.splitlines(), start = 1):
         print(f"{index}. {card}")
-    print(f"{person}'s Total Score:", total_score)
+    print(f"{person}'s Total Score: {total_score}")
     print("-----------------------\n")
 
 
-def calculate_hand(person, card_count, is_dealer=False):
+def calculate_hand(person, card_count, is_dealer = False):
     hand = draw_hand(card_count)
     total_score= sum(
         [blackjack_dealer(card) if person == "Dealer" else blackjack_player(card) for card in hand.splitlines()])
@@ -85,7 +85,7 @@ def calculate_hand(person, card_count, is_dealer=False):
         print("---------------------\n")
     else:
         print(f"{person}:")
-        for index, card in enumerate(hand.splitlines(), start=1):
+        for index, card in enumerate(hand.splitlines(), start = 1):
             print(f"{index}. {card}")
         print(f"Your Total Score: {total_score}")
         print("---------------------\n")
@@ -137,7 +137,7 @@ def game():
         print_hand("You", player_hand, player_total_score)
 
         # The Dealer's Result
-        print_hand("Dealer",dealer_hand,dealer_total_score)
+        print_hand("Dealer", dealer_hand, dealer_total_score)
 
         # The Game Result
         if player_total_score == dealer_total_score:
