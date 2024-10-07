@@ -100,10 +100,10 @@ def game():
               "===========\n")
 
         # Dealer's hand calculation
-        dealer_hand, dealer_total_score = calculate_hand("Dealer",2,True)
+        dealer_hand, dealer_total_score = calculate_hand("Dealer", 2, True)
 
         # Player's hand calculation
-        player_hand, player_total_score =calculate_hand("You",2)
+        player_hand, player_total_score =calculate_hand("You", 2)
 
         # Player's decision loop
         get_player_card = ""
