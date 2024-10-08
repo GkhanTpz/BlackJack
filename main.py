@@ -7,8 +7,10 @@ def draw_hand(number, include_faces_card = True):
         hand += draw_card(include_faces_card) + "\n"
     return hand
 
+
 def draw_card(include_faces_card = True):
     return get_rank(include_faces_card) + " of " + get_suit()
+
 
 def get_suit():
     card_choice = random.randint(1, 4)
@@ -39,6 +41,7 @@ def get_rank(include_faces_card = True):
     else:
         return str(card_rank)
 
+
 def blackjack_player(card):
     rank = card.split()[0]
     if rank in ["Jack","Queen","King"]:
@@ -56,6 +59,7 @@ def blackjack_player(card):
     else:
         return int(rank)
 
+
 def blackjack_dealer(card):
     rank = card.split()[0]
     if rank in ["Jack", "Queen", "King"]:
@@ -64,6 +68,7 @@ def blackjack_dealer(card):
         return 11  # Ace is 11 or 1, but for simplicity we return 11 here.
     else:
         return int(rank)
+
 
 def print_hand(person, person_hand, total_score):
     print(f"{person}:")
@@ -91,6 +96,7 @@ def calculate_hand(person, card_count, is_dealer = False):
         print("---------------------\n")
 
     return hand, total_score
+
 
 def print_result(player_total_score, dealer_total_score):
     if player_total_score == dealer_total_score:
@@ -159,4 +165,5 @@ def game():
         play_again = input('Would you like to play more? (Yes/No): ').capitalize()
         if play_again != "Yes":
             break
+
 game()
