@@ -2,7 +2,7 @@
 
 ## Blackjack Game Code Explanation
 
-This Python code simulates a simple Blackjack game between a player and a dealer. It implements basic Blackjack rules, allowing the player to make choices and the dealer to act according to the game's logic.
+This Python code simulates a simple Blackjack game between a player and a dealer. It implements basic Blackjack rules, allowing the player to make choices while the dealer follows predetermined game logic.
 
 ### Functions
 
@@ -45,22 +45,28 @@ This Python code simulates a simple Blackjack game between a player and a dealer
   - `card`: A string representing the card drawn.
 - **Returns:** 
   - Face cards are worth 10 points.
-  - Aces are always worth 11 points (for simplicity).
+  - Aces are always worth 11 points for simplicity.
 
-#### `print_hand(person, hand, total_score)`
-- **Purpose:** Prints the current hand and total score of a player or dealer.
-- **Parameters:**
-  - `person`: The player or dealer's name.
-  - `hand`: The hand of cards drawn.
-  - `total_score`: The total score based on the cards drawn.
+#### `print_hand(person, person_hand, total_score)`
+- **Purpose:** Prints the cards in a hand along with the total score.
+- **Parameters:** 
+  - `person`: Either "Dealer" or "Player".
+  - `person_hand`: The hand (cards) drawn by the player or dealer.
+  - `total_score`: The total score of the hand.
 
 #### `calculate_hand(person, card_count, is_dealer=False)`
-- **Purpose:** Draws the hand for a player or dealer and calculates the total score.
+- **Purpose:** Draws a hand and calculates the total score.
 - **Parameters:**
-  - `person`: The player or dealer's name.
-  - `card_count`: Number of cards to draw.
-  - `is_dealer`: If `True`, hides the dealer's second card initially.
-- **Returns:** The hand and total score.
+  - `person`: "Dealer" or "Player".
+  - `card_count`: The number of cards to draw.
+  - `is_dealer`: If `True`, one of the dealer's cards remains hidden.
+- **Returns:** The hand and the total score of the person.
+
+#### `print_result(player_total_score, dealer_total_score)`
+- **Purpose:** Prints the result of the game based on the final scores.
+- **Parameters:**
+  - `player_total_score`: The player's total hand score.
+  - `dealer_total_score`: The dealer's total hand score.
 
 ### Game Logic
 
@@ -70,7 +76,6 @@ This Python code simulates a simple Blackjack game between a player and a dealer
   1. **Game Introduction:** Displays a welcome message for the Blackjack game.
   2. **Dealer’s Initial Hand:**
      - The dealer is dealt 2 cards, but only one card is shown to the player.
-     - The second card is hidden as per Blackjack rules.
   3. **Player’s Hand:**
      - The player is dealt 2 cards, and their total hand value is calculated using `blackjack_player()`.
   4. **Player Hits or Stays:**
@@ -78,18 +83,12 @@ This Python code simulates a simple Blackjack game between a player and a dealer
      - If the player chooses to hit, their total hand value is updated, and they continue until they either stay or exceed 21.
   5. **Dealer’s Turn:**
      - The dealer draws cards until their total hand value is at least 17.
-     - If the dealer has an Ace and exceeds 21, the Ace is counted as 1 instead of 11.
+     - The dealer's total value is updated after each card is drawn.
   6. **Endgame and Result:**
      - The game compares the player's and dealer's hand values:
        - If the values are the same, it results in a draw.
        - If the player has a higher value or if the dealer busts (exceeds 21), the player wins.
        - If the dealer has a higher value without busting, the dealer wins.
   7. **Play Again Prompt:** After each round, the player is asked if they would like to play again.
-
-### Example Game Flow:
-1. **Dealer’s hand:** The dealer draws two cards, one is hidden.
-2. **Player’s hand:** The player draws two cards and decides whether to "Hit" or "Stay".
-3. **Dealer’s turn:** The dealer draws cards until their total hand value is at least 17.
-4. **Game result:** The player wins if their hand value is greater than the dealer's or if the dealer busts.
 
 ---
