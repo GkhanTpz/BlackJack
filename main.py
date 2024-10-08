@@ -92,6 +92,19 @@ def calculate_hand(person, card_count, is_dealer = False):
 
     return hand, total_score
 
+def print_result(player_total_score, dealer_total_score):
+    if player_total_score == dealer_total_score:
+        print("Draw.\n")
+    elif dealer_total_score > 21:
+        print("You win.\n")
+    elif dealer_total_score < player_total_score <= 21:
+        if player_total_score == 21:
+            print("You win. Black Jack!\n")
+        else:
+            print("You win.\n")
+    else:
+        print("The Dealer wins.\n")
+
 
 def game():
     while True:
@@ -140,19 +153,9 @@ def game():
         print_hand("Dealer", dealer_hand, dealer_total_score)
 
         # The Game Result
-        if player_total_score == dealer_total_score:
-            print("Draw.\n")
-        elif dealer_total_score > 21:
-            print("You win.\n")
-        elif dealer_total_score < player_total_score <= 21:
-            if player_total_score == 21:
-                print("You win. Black Jack!\n")
-            else:
-                print("You win.\n")
-        else:
-            print("The Dealer wins.\n")
+        print_result(player_total_score, dealer_total_score)
 
-        #Play Again!
+        # Play Again!
         play_again = input('Would you like to play more? (Yes/No): ').capitalize()
         if play_again != "Yes":
             break
