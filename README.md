@@ -1,94 +1,99 @@
 ---
 
-## Blackjack Game Code Explanation
+# Blackjack Game
 
-This Python code simulates a simple Blackjack game between a player and a dealer. It implements basic Blackjack rules, allowing the player to make choices while the dealer follows predetermined game logic.
+This project is a Python-based Blackjack game where the player competes against an automated dealer. The game adheres to basic Blackjack rules and is designed with modular code for ease of understanding and modification.
 
-### Functions
+## Game Overview
 
-#### `draw_hand(number, include_faces_card=True)`
-- **Purpose:** Generates a hand of cards for the player or dealer.
-- **Parameters:** 
-  - `number`: The number of cards to draw.
-  - `include_faces_card`: If `True`, the hand may include face cards (Jack, Queen, King).
-- **Returns:** A string representing the cards in the hand, with each card on a new line.
-- **How it works:** Calls `draw_card()` for each card drawn and concatenates the results.
+The goal of Blackjack is to get a hand value as close to 21 as possible without going over. The player competes against a dealer who follows set rules for drawing cards.
 
-#### `draw_card(include_faces_card=True)`
-- **Purpose:** Draws a single card by combining a rank (like "Ace", "2", "King") and a suit (like "Hearts", "Clubs").
-- **Parameters:**
-  - `include_faces_card`: If `True`, the card may be a face card.
-- **Returns:** A string representing a single card (e.g., "King of Hearts").
+## Project Structure
 
-#### `get_suit()`
-- **Purpose:** Randomly selects a suit for the card (Hearts, Diamonds, Spades, Clubs).
-- **Returns:** A string representing the suit of the card.
+The game is organized into several modules, each handling a specific aspect of the game, from drawing cards to managing the dealer's logic. Here’s a breakdown of each module:
 
-#### `get_rank(include_faces_card=True)`
-- **Purpose:** Generates the rank of a card.
-- **Parameters:**
-  - `include_faces_card`: If `True`, includes ranks like Jack, Queen, and King.
-- **Returns:** A string representing the rank of the card (e.g., "Ace", "7", "King").
+### 1. `main.py`
 
-#### `blackjack_player(card)`
-- **Purpose:** Determines the value of a player's card.
-- **Parameters:** 
-  - `card`: A string representing the card drawn.
-- **Returns:** 
-  - Face cards (Jack, Queen, King) are worth 10 points.
-  - The player can choose if Ace is worth 1 or 11.
-  - All other cards return their numeric value.
+The main entry point of the game. It sets up the game loop, handles player and dealer actions, and determines the game outcome.
 
-#### `blackjack_dealer(card)`
-- **Purpose:** Determines the value of a dealer's card.
-- **Parameters:** 
-  - `card`: A string representing the card drawn.
-- **Returns:** 
-  - Face cards are worth 10 points.
-  - Aces are always worth 11 points for simplicity.
+- **Game Setup**: Initializes the dealer's and player's hands.
+- **Player Turn**:
+  - Prompts the player to "Hit" or "Stay".
+  - If the player chooses "Hit," they receive another card, and their score is updated.
+  - If the player’s score exceeds 21, they bust, ending the game round.
+- **Dealer Turn**:
+  - The dealer will continue to draw cards until their hand reaches at least 17.
+  - If the dealer’s hand contains an Ace, it may adjust the Ace’s value from 11 to 1 to prevent a bust.
+- **Game Result**: Displays both the player’s and dealer’s hands and total scores, determining the winner.
 
-#### `print_hand(person, person_hand, total_score)`
-- **Purpose:** Prints the cards in a hand along with the total score.
-- **Parameters:** 
-  - `person`: Either "Dealer" or "Player".
-  - `person_hand`: The hand (cards) drawn by the player or dealer.
-  - `total_score`: The total score of the hand.
+### 2. `blackjack.py`
 
-#### `calculate_hand(person, card_count, is_dealer=False)`
-- **Purpose:** Draws a hand and calculates the total score.
-- **Parameters:**
-  - `person`: "Dealer" or "Player".
-  - `card_count`: The number of cards to draw.
-  - `is_dealer`: If `True`, one of the dealer's cards remains hidden.
-- **Returns:** The hand and the total score of the person.
+Manages card drawing and deck functionality, including creating suits and ranks.
 
-#### `print_result(player_total_score, dealer_total_score)`
-- **Purpose:** Prints the result of the game based on the final scores.
-- **Parameters:**
-  - `player_total_score`: The player's total hand score.
-  - `dealer_total_score`: The dealer's total hand score.
+- **`draw_hand(number, include_faces_card=True)`**: Draws a specified number of cards and returns them as a formatted string.
+- **`draw_card(include_faces_card=True)`**: Draws a single card, randomly selecting a suit and rank.
+- **`get_suit()`**: Returns a random suit ("Hearts," "Diamonds," "Spades," or "Clubs").
+- **`get_rank(include_faces_card=True)`**: Returns a random rank from 2-10 and face cards (Jack, Queen, King, Ace). The face cards and Ace are included by default unless specified otherwise.
 
-### Game Logic
+### 3. `dealer.py`
 
-#### `game()`
-- **Purpose:** The main function to simulate a round of Blackjack between the player and the dealer.
-- **How it works:**
-  1. **Game Introduction:** Displays a welcome message for the Blackjack game.
-  2. **Dealer’s Initial Hand:**
-     - The dealer is dealt 2 cards, but only one card is shown to the player.
-  3. **Player’s Hand:**
-     - The player is dealt 2 cards, and their total hand value is calculated using `blackjack_player()`.
-  4. **Player Hits or Stays:**
-     - The player can choose to "Hit" (draw another card) or "Stay" (end their turn).
-     - If the player chooses to hit, their total hand value is updated, and they continue until they either stay or exceed 21.
-  5. **Dealer’s Turn:**
-     - The dealer draws cards until their total hand value is at least 17.
-     - The dealer's total value is updated after each card is drawn.
-  6. **Endgame and Result:**
-     - The game compares the player's and dealer's hand values:
-       - If the values are the same, it results in a draw.
-       - If the player has a higher value or if the dealer busts (exceeds 21), the player wins.
-       - If the dealer has a higher value without busting, the dealer wins.
-  7. **Play Again Prompt:** After each round, the player is asked if they would like to play again.
+Handles the dealer’s behavior and hand scoring logic.
+
+- **`dealer_hand(card)`**: Takes a card as input and returns its value based on standard Blackjack scoring:
+  - Face cards (Jack, Queen, King) are valued at 10.
+  - Ace is valued at 11 (adjustable in `main.py` to 1 if needed to avoid busting).
+  - Numbered cards retain their face value.
+
+### 4. `player.py`
+
+Controls the player’s hand logic, allowing flexibility with Ace values.
+
+- **`player_hand(card)`**: Determines the value of a card for the player:
+  - Prompts the player to choose a value of 1 or 11 for an Ace.
+  - Returns 10 for face cards and the card's number value otherwise.
+
+### 5. `result.py`
+
+Displays game results, including each hand and total scores.
+
+- **`print_hand(person, person_hand, total_score)`**: Displays each card in a player’s or dealer’s hand, along with their total score.
+- **`print_result(player_total_score, dealer_total_score)`**: Determines and prints the game outcome based on the player’s and dealer’s scores:
+  - Declares "Draw" if scores are equal.
+  - Declares the player as the winner if the dealer busts or the player's score is closer to 21.
+  - Otherwise, the dealer wins.
+
+### 6. `score.py`
+
+Calculates the initial hands and scores for both the dealer and player.
+
+- **`calculate_hand(person, card_count, is_dealer=False)`**:
+  - Draws a specified number of cards for the player or dealer.
+  - Displays the dealer’s first card while hiding the second, per standard Blackjack rules.
+  - Calculates and returns the total score by summing card values using either `dealer.dealer_hand()` or `player.player_hand()` based on the `is_dealer` flag.
+
+## Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/GkhanTpz/BlackJack.git
+   cd BlackJack
+   ```
+
+2. Run the game:
+   ```bash
+   python main.py
+   ```
+
+## Gameplay Instructions
+
+1. **Objective**: Achieve a hand total closest to 21 without exceeding it.
+2. **Player Actions**:
+   - **Hit**: Draw an additional card.
+   - **Stay**: End your turn, leaving your current total as is.
+3. **Winning Conditions**:
+   - If the player's score is over 21, they bust, and the dealer wins.
+   - If the dealer's score exceeds 21, the player wins.
+   - The hand closest to 21 without going over wins the round.
 
 ---
+
