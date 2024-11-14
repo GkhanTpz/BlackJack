@@ -1,12 +1,12 @@
-def print_hand(person, person_hand, total_score):
+def show_hand(person, person_hand, total_score):
     print(f"{person}:")
-    for index, card in enumerate(person_hand.splitlines(), start=1):
-        print(f"{index}. {card}")
+    for index, cards in enumerate(person_hand.splitlines(), start=1):
+        print(f"{index}. {cards}")
     print(f"{person}'s Total Score: {total_score}")
     print("-----------------------\n")
 
 
-def print_result(player_total_score, dealer_total_score):
+def show_result(player_total_score, dealer_total_score):
     if player_total_score == dealer_total_score:
         print("Draw.\n")
     elif dealer_total_score > 21:

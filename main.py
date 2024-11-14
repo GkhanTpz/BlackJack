@@ -1,4 +1,4 @@
-import blackjack
+import card
 import dealer
 import player
 import result
@@ -20,7 +20,7 @@ while True:
     while player_total_score <= 17:
         player_answer = input('Hit or Stay: ').capitalize()
         if player_answer == "Hit":
-            get_player_card = blackjack.draw_hand(1)
+            get_player_card = card.draw_hand(1)
             print(get_player_card)
             player_total_score += player.player_hand(get_player_card)
             if player_total_score >= 21:
@@ -35,25 +35,26 @@ while True:
     while dealer_total_score <= 17:
         if player_total_score > 21:
             break
-        get_dealer_card = blackjack.draw_hand(1)
+        get_dealer_card = card.draw_hand(1)
         dealer_total_score += dealer.dealer_hand(get_dealer_card)
         if dealer_total_score > 21:
-            for card in dealer_hand.splitlines():
-                if card == "Ace":
+            for cards in dealer_hand.splitlines():
+                if cards == "Ace":
                     dealer_total_score -= 10
                     break
 
     # Player's Result
-    result.print_hand("You", player_hand, player_total_score)
+    result.show_hand("You", player_hand, player_total_score)
 
     # The Dealer's Result
-    result.print_hand("Dealer", dealer_hand, dealer_total_score)
+    result.show_hand("Dealer", dealer_hand, dealer_total_score)
 
     # The Game Result
-    result.print_result(player_total_score, dealer_total_score)
+    result.show_result(player_total_score, dealer_total_score)
 
     # Play Again!
     play_again = input('Would you like to play more? (Yes/No): ').capitalize()
     if play_again != "Yes":
+        print("Thanks to play!h")
         break
 

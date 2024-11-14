@@ -1,5 +1,5 @@
-def dealer_hand(card):
-    rank = card.split()[0]
+def dealer_hand(cards):
+    rank = cards.split()[0]
     if rank in ["Jack", "Queen", "King"]:
         return 10
     elif rank == "Ace":
