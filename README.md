@@ -1,3 +1,4 @@
+```markdown
 # Blackjack Game in Python 🃏
 
 A text-based Blackjack game written in Python, where you compete against a computer-controlled dealer. This project demonstrates key programming principles, like loops, conditionals, and functions, in a fun and interactive way.
@@ -81,10 +82,60 @@ Dealer's Total Score: 17
 You win!
 
 Would you like to play more? (Yes/No):
+```
+
+
 ---
+
+## 🧑‍💻 Function Explanations
+
+### `card.py`
+
+- **`draw_hand(number, include_faces_card=True)`**: This function draws a specified number of cards (`number`). By default, it includes face cards (Jack, Queen, King). It calls the `draw_card()` function to generate individual cards and returns them as a formatted string.
+
+- **`draw_card(include_faces_card=True)`**: This function generates a single card with both a rank and suit. The `include_faces_card` parameter determines whether face cards are included in the deck.
+
+- **`get_suit()`**: This function randomly selects a suit for the card. The possible suits are **Hearts**, **Diamonds**, **Spades**, and **Clubs**.
+
+- **`get_rank(include_faces_card=True)`**: This function generates a random rank for the card. If `include_faces_card` is `True`, the rank can be any of the numbers (2–10) or the face cards (Jack, Queen, King). Otherwise, the rank is restricted to numbers between 2 and 10.
+
+---
+
+### `score.py`
+
+- **`calculate_hand(person, card_count, is_dealer=False)`**: This function calculates the total score for a person’s hand (`person`) by drawing a specified number of cards (`card_count`). The `is_dealer` flag determines if the person is the dealer. If it's the dealer's hand, only one card is shown, and the other is hidden.
+
+---
+
+### `dealer.py`
+
+- **`dealer_hand(cards)`**: This function processes the cards in the dealer’s hand and returns their value. Face cards are worth 10 points, Aces are worth 11 points, and numbered cards hold their face value.
+
+---
+
+### `player.py`
+
+- **`player_hand(cards)`**: This function evaluates the player's cards and determines their total score. For an Ace, the player is prompted to choose between 1 or 11. The function ensures valid input and adjusts the score accordingly.
+
+---
+
+### `result.py`
+
+- **`show_hand(person, person_hand, total_score)`**: This function displays the cards in the hand of the specified person (`person`), followed by their total score.
+
+- **`show_result(player_total_score, dealer_total_score)`**: This function displays the outcome of the game, comparing the player’s score to the dealer’s. It announces whether the player wins, loses, or if the game results in a draw.
+
+---
+
+## 📂 File Descriptions
+
+- **card.py**: Main game loop and card drawing functions.
+- **dealer.py**: Dealer-specific functions, such as calculating the dealer's hand.
+- **player.py**: Handles player-specific logic, including Ace value selection.
+- **score.py**: Manages score calculation for each hand.
+- **result.py**: Displays the results after each game round.
 
 ## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-
+```
