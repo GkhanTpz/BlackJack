@@ -130,8 +130,10 @@ Would you like to play more? (Yes/No):
 - **player.py**: Handles player-specific logic, including Ace value selection.
 - **score.py**: Manages score calculation for each hand.
 - **result.py**: Displays the results after each game round.
+---
+
 
 ## 📝 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-```
+
