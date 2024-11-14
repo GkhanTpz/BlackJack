@@ -81,9 +81,7 @@ Dealer's Total Score: 17
 You win!
 
 Would you like to play more? (Yes/No):
-'''
-
-
+```
 
 ## 🧑‍💻 Function Explanations
 
