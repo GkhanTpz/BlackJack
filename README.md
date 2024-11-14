@@ -1,4 +1,3 @@
-```markdown
 # Blackjack Game in Python 🃏
 
 A text-based Blackjack game written in Python, where you compete against a computer-controlled dealer. This project demonstrates key programming principles, like loops, conditionals, and functions, in a fun and interactive way.
@@ -82,11 +81,8 @@ Dealer's Total Score: 17
 You win!
 
 Would you like to play more? (Yes/No):
-```
-
 
 ---
-
 ## 🧑‍💻 Function Explanations
 
 ### `card.py`
