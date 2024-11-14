@@ -49,39 +49,14 @@ The game ends when the player or dealer reaches 21, goes over 21, or decides to 
 
 ---
 
-## 💡 Sample Gameplay
+## 📂 File Descriptions
 
-```plaintext
-===========
-BLACK JACK
-===========
-
-Dealer:
-1. Ace of Hearts
-2. **********
------------------------
-
-You:
-1. 8 of Clubs
-2. 7 of Spades
-Your Total Score: 15
------------------------
-
-Hit or Stay: Hit
-3. 5 of Diamonds
-Your Total Score: 20
------------------------
-
-Dealer's Hand:
-1. Ace of Hearts
-2. 6 of Clubs
-Dealer's Total Score: 17
------------------------
-
-You win!
-
-Would you like to play more? (Yes/No):
-```
+- **card.py**: Main game loop and card drawing functions.
+- **dealer.py**: Dealer-specific functions, such as calculating the dealer's hand.
+- **player.py**: Handles player-specific logic, including Ace value selection.
+- **score.py**: Manages score calculation for each hand.
+- **result.py**: Displays the results after each game round.
+---
 
 ## 🧑‍💻 Function Explanations
 
@@ -123,15 +98,39 @@ Would you like to play more? (Yes/No):
 
 ---
 
-## 📂 File Descriptions
+## 💡 Sample Gameplay
 
-- **card.py**: Main game loop and card drawing functions.
-- **dealer.py**: Dealer-specific functions, such as calculating the dealer's hand.
-- **player.py**: Handles player-specific logic, including Ace value selection.
-- **score.py**: Manages score calculation for each hand.
-- **result.py**: Displays the results after each game round.
----
+```plaintext
+===========
+BLACK JACK
+===========
 
+Dealer:
+1. Ace of Hearts
+2. **********
+-----------------------
+
+You:
+1. 8 of Clubs
+2. 7 of Spades
+Your Total Score: 15
+-----------------------
+
+Hit or Stay: Hit
+3. 5 of Diamonds
+Your Total Score: 20
+-----------------------
+
+Dealer's Hand:
+1. Ace of Hearts
+2. 6 of Clubs
+Dealer's Total Score: 17
+-----------------------
+
+You win!
+
+Would you like to play more? (Yes/No):
+```
 
 ## 📝 License
 
